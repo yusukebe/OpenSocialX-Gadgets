@@ -40,10 +40,12 @@ sub add_pref {
 
 sub add_content {
     my ( $self, $args ) = @_;
-    my $type    = $args->{type};                                       #XXX
+    my $type    = $args->{type} || 'html';
+    my $view    = $args->{view} || 'canvas';
     my ($module) = $self->{dom}->getElementsByTagName('Module');
     my $content = $self->{dom}->createElement('Content');
     $content->setAttribute( 'type', $type );
+    $content->setAttribute( 'view', $view );
     my $text = '';
     for my $file ( @{ $args->{include} } ) {
         if( $file =~ /\.js$/ ){
