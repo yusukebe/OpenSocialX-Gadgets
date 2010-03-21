@@ -7,17 +7,20 @@ use File::Slurp qw/read_file/;
 
 sub new {
     my ( $class, %opt ) = @_;
-    my $self = bless { title => $opt{title}, modules => [], }, $class;
-    $self->_init;
+    my $self = bless { modules => [], }, $class;
+    $self->_init( %opt );
     $self;
 }
 
 sub _init {
     my $self = shift;
+    my %opt = @_;
     my $dom   = XML::LibXML::Document->new( '1.0', 'utf-8' );
     my $module  = $dom->createElement('Module');
     my $prefs = $dom->createElement('ModulePrefs');
-    $prefs->setAttribute('title', $self->{title} );
+    for my $key ( keys %opt ) {
+        $prefs->setAttribute( $key , $opt{$key} );
+    }
     $module->appendChild( $prefs );
     $dom->setDocumentElement( $module );
     $self->{dom} = $dom;
@@ -70,7 +73,7 @@ OpenSocialX::Gadgets - Helper modules for development of OpenSocial
 
   use OpenSocialX::Gadgets;
 
-  my $gadget = OpenSocialX::Gadgets->new( title => 'Hello World' );
+  my $gadget = OpenSocialX::Gadgets->new( title => 'Hello World', description => 'just hello world' );
   $gadget->add_pref( 'Require', { feature => ['opensocial-0.8'] } );
   $gadget->add_content( { type => 'html', include => [qw!./eg/index.html ./eg/index.js!] } );
   my $xml = $gadget->render;
