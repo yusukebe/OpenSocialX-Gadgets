@@ -47,11 +47,16 @@ sub add_content {
     $content->setAttribute( 'type', $type );
     $content->setAttribute( 'view', $view );
     my $text = '';
-    for my $file ( @{ $args->{include} } ) {
+    for my $file ( @{ $args->{include} }  ) {
         if( $file =~ /\.js$/ ){
             $text .= '<script type="text/javascript">' . read_file( $file ) . '</script>';
         }else{
             $text  .= read_file($file);
+        }
+    }
+    for my $url ( @{ $args->{external} } ) {
+        if( $url =~ /\.js$/ ){
+            $text .= sprintf '<script type="text/javascript" src="%s"></script>', $url;
         }
     }
     my $cdata = XML::LibXML::CDATASection->new($text);
