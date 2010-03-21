@@ -2,7 +2,8 @@ use inc::Module::Install;
 name 'OpenSocialX-Gadgets';
 all_from 'lib/OpenSocialX/Gadgets.pm';
 
-# requires '';
+requires 'XML::LibXML';
+requires 'File::Slurp';
 
 tests 't/*.t';
 author_tests 'xt';
