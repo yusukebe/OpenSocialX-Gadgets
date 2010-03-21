@@ -64,7 +64,7 @@ __END__
 
 =head1 NAME
 
-OpenSocialX::Gadgets - Helper modules for development or OpenSocial
+OpenSocialX::Gadgets - Helper modules for development of OpenSocial
 
 =head1 SYNOPSIS
 
