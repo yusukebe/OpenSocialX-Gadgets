@@ -7,7 +7,7 @@ use File::Slurp qw/read_file/;
 
 sub new {
     my ( $class, %opt ) = @_;
-    my $self = bless { modules => [], }, $class;
+    my $self = bless {}, $class;
     $self->_init( %opt );
     $self;
 }
