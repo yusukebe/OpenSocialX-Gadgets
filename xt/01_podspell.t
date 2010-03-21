@@ -8,3 +8,6 @@ __DATA__
 Yusuke Wada
 yusuke at kamawada.com
 OpenSocialX::Gadgets
+OpenSocial
+mixi
+appli
